@@ -23,7 +23,7 @@ RUN curl -fSL -o $GN_FILE \
      https://sourceforge.net/projects/geonetwork/files/GeoNetwork_opensource/v${GN_VERSION}/geonetwork.war/download && \
      echo "$GN_DOWNLOAD_MD5 *$GN_FILE" | md5sum -c && \
      mkdir -p geonetwork && \
-     unzip -e $GN_FILE -d ~/geonetwork && \
+     unzip -e $GN_FILE -d /opt/tomcat7/webapps/geonetwork && \
      rm $GN_FILE
 
 RUN groupadd tomcat7 && \
@@ -33,7 +33,6 @@ RUN groupadd tomcat7 && \
      chmod -R g+r conf && \
      chmod g+x conf && \
      chown -R tomcat7 webapps/ work/ temp/ logs/ && \
-     mv ~/geonetwork /opt/tomcat7/webapps/ && \
      mkdir $DATA_DIR && \
      chown -R tomcat7:tomcat7 $DATA_DIR && \
      chown -R tomcat7:tomcat7 /opt/tomcat7/webapps/geonetwork
