@@ -4,7 +4,7 @@ Docker images for legacy GeoNetwork versions.
 ## How to run
 
 ```
-docker run --name geonetwork-26 -p 8080:8080 geonetwork-legacy:2.6.4
+docker run --name geonetwork-26 -p 8080:8080 juanluisrp/geonetwork-legacy:2.6.4
 ```
 
 ### Default credentials
