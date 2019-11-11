@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ "$1" = 'bin/catalina.sh' ]; then
+if [ "$1" = 'catalina.sh' ]; then
 
 	mkdir -p "$DATA_DIR"
 

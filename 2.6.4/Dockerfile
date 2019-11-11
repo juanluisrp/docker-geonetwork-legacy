@@ -3,13 +3,17 @@ FROM debian:jessie
 ENV GN_FILE geonetwork.war
 ENV DATA_DIR=/geonetwork-data
 ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -server -Xms512m -Xmx2024m"
+ENV CATALINA_HOME /opt/tomcat7
+ENV PATH $CATALINA_HOME/bin:$PATH
 
 #Environment variables
 ENV GN_VERSION 2.6.4
 ENV GN_DOWNLOAD_MD5 ca37a5d6aac22c5a86aae99eb87797e3
 ENV TOMCAT_DOWNLOAD_SHA512=a7ab7627ebafab8c5e5b1b09cff3a6e760f45dbc9b9ab235e14532357e47cf3bb6bbcfbdd92cd94561fe471296fd734d221ba8d59e1216a8369d2c39b1a80c98
 
-RUN apt-get update && apt-get install -yq unzip curl openjdk-7-jre-headless && apt-get clean
+RUN apt-get update && apt-get install -yq unzip curl openjdk-7-jre-headless && apt-get clean && \
+     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false && \
+     rm -rf /var/lib/apt/lists/*
 
 RUN curl -fSL -o tomcat7.tar.gz \
      https://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.96/bin/apache-tomcat-7.0.96.tar.gz && \
@@ -47,4 +51,4 @@ VOLUME [ "/opt/tomcat7/webapps/geonetwork/WEB-INF/db/data/", "${DATA_DIR}" ]
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["bin/catalina.sh", "run"]
+CMD ["catalina.sh", "run"]
