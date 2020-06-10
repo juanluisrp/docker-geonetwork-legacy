@@ -7,8 +7,8 @@ ENV CATALINA_HOME /opt/tomcat7
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 #Environment variables
-ENV GN_VERSION 2.6.4
-ENV GN_DOWNLOAD_MD5 ca37a5d6aac22c5a86aae99eb87797e3
+ENV GN_VERSION 2.10.3
+ENV GN_DOWNLOAD_MD5 6bcdebb552867ffeec585bee0179b8e0
 ENV TOMCAT_VERSION 7.0.104
 ENV TOMCAT_DOWNLOAD_SHA512=d14c4dd0b9f360030805ed6f59dacb212b86c90bcbc4e381364001cf97b12b581c880bfd8764cf12913864c825164b10d654752d20700d029f207b82f5bcd858
 
@@ -37,7 +37,9 @@ RUN curl -fSL -o tomcat7.tar.gz \
      chown -R tomcat7 webapps/ work/ temp/ logs/ && \
      mkdir $DATA_DIR && \
      chown -R tomcat7:tomcat7 $DATA_DIR && \
-     chown -R tomcat7:tomcat7 /opt/tomcat7/webapps/geonetwork
+     chown -R tomcat7:tomcat7 /opt/tomcat7/webapps/geonetwork && \
+     chown tomcat7:tomcat7 /opt/tomcat7
+
 
 
 
