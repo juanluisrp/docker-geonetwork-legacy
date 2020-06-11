@@ -2,7 +2,7 @@ FROM debian:jessie
 
 ENV GN_FILE geonetwork.war
 ENV CATALINA_HOME /opt/tomcat7
-ENV DATA_DIR=${CATALINA_HOME}}/data
+ENV DATA_DIR=${CATALINA_HOME}/data
 ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -server -Xms512m -Xmx2024m"
 
 ENV PATH $CATALINA_HOME/bin:$PATH
